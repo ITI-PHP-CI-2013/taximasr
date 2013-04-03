@@ -4,13 +4,13 @@ class Search extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('taxis','reviews');
+        $this->load->model(array('taxis','reviews'));
         $this->load->helper('url');
     }
 
     public function rate_taxi($taxi_id) {
 	$taxinum=$this->input->post('taxinum');
-        $data['taxiscore'] = $this->taxis->get_score(); //MVC model
+        $data['taxiscore'] = $this->taxis->get_score($taxi_id); //MVC model
         $data['taxireview'] = $this->reviews->get_reviews($taxi_id); //an associative array contains all 6 items
 		$data['taxiname']=$taxinum;
         $this->load->view('search_logged', $data); //associative array with two values ,first is assoc and the other is score
@@ -29,9 +29,11 @@ class Search extends CI_Controller {
     public function taxi_exist() {
         $taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum);
-
        return $taxi_id;
+	   
     }
+	
+
 	}
 	$taxi = new Search();
         if(isset($_SESSION['username']))
