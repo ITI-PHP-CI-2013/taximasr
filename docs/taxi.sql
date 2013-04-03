@@ -1,7 +1,3 @@
-drop database if exists `taxi`;
-create database if not exists `taxi`;
-use `taxi`;
-
 create table users(id int auto_increment  primary key,
 				   username varchar(40) ,
 				   password_sha2 varchar(80) ,
