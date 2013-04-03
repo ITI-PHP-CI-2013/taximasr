@@ -13,6 +13,8 @@ class Search extends CI_Controller {
         $data['taxiscore'] = $this->taxis->get_score($taxi_id); //MVC model
         $data['taxireview'] = $this->reviews->get_reviews($taxi_id); //an associative array contains all 6 items
 		$data['taxiname']=$taxinum;
+		$data['taxiID']=$taxi_id;
+		$data['count']=$this->reviews->get_count($taxi_id);;
         $this->load->view('search_logged', $data); //associative array with two values ,first is assoc and the other is score
     }
 
