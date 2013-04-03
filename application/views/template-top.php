@@ -1,6 +1,6 @@
 <? @header("Content-Type: text/html; charset=UTF-8"); ?>
 <!DOCTYPE html>
-<html>
+<html dir="rtl" lang="ar">
 	<head>
 		<meta charset="utf-8" />
 		<title>تاكسى مصر -- اللى ركبوا التاكسى دة قبلك رأيهم فيه ايه؟</title>
