@@ -1,29 +1,45 @@
-<?php
-class Users extends CI_Controller
-{
+<?php 
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('user');
-		$this->load->library('email');
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Users extends CI_Controller{
+	public function __construct(){
+            parent::__construct();
+            $this->load->model('signupmodel');
+            $this->load->model('user');
+            $this->load->library('email');
+            $this->load->library('javascript');
 	}
-	function forget_password()
-	{
-		if(isset($_POST['username'])||isset($_POST['email']))
-		{
+	
+	public function signup(){       
+            $this->load->view('template-top');
+            $this->load->view('signupform');
+            $this->load->view('template-bottom');
+	}
+                
+       	public function check_user(){
+            $check= $this->signupmodel->get_usernames($_GET['username']);
+            if ($check==1)
+                 echo "هذا الأسم مستخدم سابقا";
+            //$_GET['username']
+	}
+                
+        public function insert_user(){
+                $pass=hash ('sha256',$_POST['password']);
+                $this->signupmodel->insert_user($_POST['name'],$pass,$_POST['email'],time());
+                echo "Username registered successfully";
+        }
+
+        public function forget_password() {
+		if(isset($_POST['username'])||isset($_POST['email'])) {
 			$exist;
 			$email;
-			if(isset($_POST['username'])&&$_POST['username']!="")
-			{
+			if(isset($_POST['username'])&&$_POST['username']!="") {
 				$username=$_POST['username'];
 				$email=$this->user->forget_password_get_email($username);
-			}
-			else
-			{
+			} else {
 				$email=$_POST['email'];
 			}
-
 			$exist=$this->user->forget_password_check_email($email);
 			if($exist==0)
 			{
@@ -51,15 +67,13 @@ class Users extends CI_Controller
 				$this->load->view('template-bottom');
 
 			}
-		}
-		
-		else
-		{
+		} else {
 			$this->load->view('template-top');
 			$this->load->view('forget_password');
 			$this->load->view('template-bottom');
 		}
 
 	}
+
 }
-?>
+
