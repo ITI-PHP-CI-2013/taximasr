@@ -20,7 +20,7 @@
 		</style>
 	</head>
 	<body dir="rtl">
-	<img src="<?php echo base_url('images/taximasr.png'); ?>" width="90%" style="display: block; margin: 0 auto; max-width: 350px;" />
+	<a href="<?php echo base_url(); ?>"><img border="0" src="<?php echo base_url('images/taximasr.png'); ?>" width="90%" style="display: block; margin: 0 auto; max-width: 350px;" /></a>
 	<h1>تاكسى مصر!</h1>
 	<?php if(isset($username) && $username != ''){ ?>
 		<p>مرحباً بك يا <?php echo $username; ?>!</p>
