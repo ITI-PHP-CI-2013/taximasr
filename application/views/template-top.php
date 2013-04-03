@@ -1,6 +1,6 @@
 <? @header("Content-Type: text/html; charset=UTF-8"); ?>
 <!DOCTYPE html>
-<html>
+<html dir="rtl" lang="ar">
 	<head>
 		<meta charset="utf-8" />
 		<title>تاكسى مصر -- اللى ركبوا التاكسى دة قبلك رأيهم فيه ايه؟</title>
@@ -19,8 +19,14 @@
 		<style>
 		</style>
 	</head>
-	<body>
-	<?php if(isset($username)){ ?>
+	<body dir="rtl">
+	<a href="<?php echo base_url(); ?>"><img border="0" src="<?php echo base_url('images/taximasr.png'); ?>" width="90%" style="display: block; margin: 0 auto; max-width: 350px;" /></a>
+	<h1>تاكسى مصر!</h1>
+	<?php if(isset($username) && $username != ''){ ?>
 		<p>مرحباً بك يا <?php echo $username; ?>!</p>
 		<a href="<?php echo base_url('users/view_profile'); ?>">صفحتى الشخصية</a>
+	<?php }else{ ?>
+		<p>لم تقم بتسجيل الدخول بعد!</p>
+		<a href="<?php echo base_url('users/login'); ?>">تسجيل الدخول</a>
+		<a href="<?php echo base_url('users/signup'); ?>">اشترك الآن!</a>
 	<?php } ?>

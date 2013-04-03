@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule . index.php
+=======
 RewriteEngine On 
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
@@ -24,3 +29,4 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 #ErrorDocument 404 /index.php
 
 
+>>>>>>> dec0fa0ea958bef6fac22e4d6d1fb115b9fcb3bb
