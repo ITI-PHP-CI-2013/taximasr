@@ -5,8 +5,21 @@ class Search extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model(array('taxis','reviews'));
-        $this->load->helper('url');
     }
+	public function index(){
+	$taxinum=$this->input->post('taxinum');
+		$_SESSION['username']="test";
+        if(isset($_SESSION['username']))
+        {
+            $taxi_id=$this->taxi_exist();
+			echo $taxi_id;
+            if($taxi_id){
+            $this->rate_taxi($taxi_id);
+            }else{
+            $this->add_taxi($taxinum);
+            }
+		}
+	}
 
     public function rate_taxi($taxi_id) {
 $taxinum=$this->input->post('taxinum');
@@ -31,9 +44,11 @@ $data['count']=$this->reviews->get_count($taxi_id);;
     public function taxi_exist() {
         $taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum);
+		//echo $taxi_id; 
        return $taxi_id;
 
     }
+<<<<<<< HEAD
 
 
 
@@ -49,3 +64,9 @@ public function index(){
     }
 }
 }
+=======
+	
+}	
+
+?>
+>>>>>>> some errors fixed
