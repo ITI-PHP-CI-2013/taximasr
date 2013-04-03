@@ -11,7 +11,7 @@ class Search extends CI_Controller {
     public function rate_taxi($taxi_id) {
 	$taxinum=$this->input->post('taxinum');
         $data['taxiscore'] = $this->taxis->get_score(); //MVC model
-        $data['taxireview'] = $this->reviews->get_reviews(); //an associative array contains all 6 items
+        $data['taxireview'] = $this->reviews->get_reviews($taxi_id); //an associative array contains all 6 items
 		$data['taxiname']=$taxinum;
         $this->load->view('search_logged', $data); //associative array with two values ,first is assoc and the other is score
     }
