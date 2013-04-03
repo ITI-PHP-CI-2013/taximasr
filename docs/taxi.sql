@@ -4,7 +4,7 @@ use `taxi`;
 
 create table users(id int auto_increment  primary key,
 				   username varchar(40) ,
-				   password_sha2 varchar(40) ,
+				   password_sha2 varchar(80) ,
 				   email varchar(80) ,
 				   notify_email varchar(80) ,
 				   mobile varchar(20) ,
