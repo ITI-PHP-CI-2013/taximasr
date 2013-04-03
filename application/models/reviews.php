@@ -3,7 +3,7 @@ class Reviews extends CI_Model{
 
 		public function get_reviews($taxi_id){
 		 $reviews = array();
-			$query = $this->taximasr->query("select sum(physical_status),sum(cleanliness),sum(driver_behavior),sum(pricing),sum(radio_volume),sum(driving_style) from reviews group by taxi_id having taxi_id=$taxi_id");
+			$query = $this->db->query("select sum(physical_status),sum(cleanliness),sum(driver_behavior),sum(pricing),sum(radio_volume),sum(driving_style) from reviews group by taxi_id having taxi_id=$taxi_id");
 				foreach($query->result() as $row){
 				$reviews['physical_status'] = $row->sum(physical_status);
 				$reviews['cleanliness'] = $row->sum(cleanliness);
