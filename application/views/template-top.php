@@ -7,7 +7,7 @@
 
 		<!-- load js libs -->
 		<script src="<?php echo base_url('js/jquery-min.js'); ?>"></script>
-		
+		<script src="<?php echo base_url('js/javascript.js'); ?>"></script>
 		<!-- load css -->
 		<link href="<?php echo base_url('css/taxi-masr.css'); ?>" rel="stylesheet" type="text/css" />
 
