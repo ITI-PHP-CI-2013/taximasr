@@ -16,6 +16,13 @@ class Reviews extends CI_Model{
 		}
 		return $reviews;
 		}
+		
+		public function get_count($taxi_id){
+		$query = $this->db->query("select count(id) from reviews group by taxi_id having taxi_id=$taxi_id");
+		
+		
+		
+		}
 	
 		
 }
