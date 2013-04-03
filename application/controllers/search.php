@@ -19,7 +19,7 @@ class Search extends CI_Controller {
     }
 
 	
-	/*public function taxi_exist() {
+	public function taxi_exist() {
 		$taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum); 
 
@@ -36,7 +36,7 @@ class Search extends CI_Controller {
 	
 	}
 	
-	}*/
+	}
    public function taxi($id=0)
    {
 	
