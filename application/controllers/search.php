@@ -4,8 +4,11 @@ class Search extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('taxis','reviews');
+        $this->load->model(array('taxis'));
         $this->load->helper('url');
+        $this->load->library('session');
+        
+        
     }
 
     public function rate_taxi($taxi_id) {
@@ -16,7 +19,7 @@ class Search extends CI_Controller {
     }
 
 	
-	public function taxi_exist() {
+	/*public function taxi_exist() {
 		$taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum); 
 
@@ -33,9 +36,42 @@ class Search extends CI_Controller {
 	
 	}
 	
-	}
+	}*/
+   public function taxi($id=0)
+   {
 	
-	
+	if ($this->session->userdata('username')==null)
+	 {
+		
+		if($id==0) {
+			$data['taxis']=$this->taxis->search_taxi($this->input->post('taxinum')); 
+	    } else {
+		   $data['taxis']=$this->taxis->search_taxi_id($id);
+       }
+	   
+	   
+	    if(count($data['taxis'])==1)
+	    { 
+		  $taxi_id=$data['taxis']['id'];
+		  $data['reviews']=$this->taxis->get_all_reviews($taxi_id);
+		  $this->load->view("template-top");
+		  $this->load->view("taxi",$data);
+		  $this->load->view("template-bottom");
+		  
+		}
+		else
+		{
+		  //not_found($data);
+		}
+	 }
+	else //there is session
+	{
+     
+     $this->rate_taxi($data);
+     //redirect to logged search results 
+	} 
+   
+ 	
 }
-
+}
 ?>
