@@ -36,8 +36,8 @@ class Search extends CI_Controller {
     }
 	
 
-	}
-	$taxi = new Search();
+	
+	public function index(){
         if(isset($_SESSION['username']))
         {
             $taxi_id=$taxi->taxi_exist();
@@ -47,6 +47,7 @@ class Search extends CI_Controller {
             $taxi->add_taxi($taxinum);
             }
     }
-
+	}
+}	
 
 ?>
