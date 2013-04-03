@@ -15,6 +15,11 @@ class Search extends CI_Controller {
         $this->load->view('search_logged', $data); //associative array with two values ,first is assoc and the other is score 
     }
 
+	 public function not_found() {
+        $this->load->view("template-top");
+        $this->load->view("not_found");
+        $this->load->view("template-bottom");
+    }
 	
 	public function taxi_exist() {
 		$taxinum=$this->input->post('taxinum');
