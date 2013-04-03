@@ -8,7 +8,7 @@ class Search extends CI_Controller {
     }
 	public function index(){
 	$taxinum=$this->input->post('taxinum');
-		$_SESSION['username']="test";
+		//$_SESSION['username']="test";
         if(isset($_SESSION['username']))
         {
             $taxi_id=$this->taxi_exist();
@@ -48,7 +48,7 @@ $data['count']=$this->reviews->get_count($taxi_id);;
        return $taxi_id;
 
     }
-<<<<<<< HEAD
+
 
 
 
@@ -64,9 +64,9 @@ public function index(){
     }
 }
 }
-=======
+
 	
-}	
+	
 
 ?>
->>>>>>> some errors fixed
+
