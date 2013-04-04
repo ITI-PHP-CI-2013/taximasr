@@ -1,7 +1,7 @@
 <?php
-<<<<<<< HEAD
 
-class taxis extends CI_Model{
+
+class Taxis extends CI_Model{
   public function search_taxi($taxinum)
   {
 	$i = 0;
@@ -72,15 +72,18 @@ public function get_all_reviews($taxi_id)
 	return $reviews; 
   }
 
+public function found($taxinum){
+		
+	$test2 = array();
+				  
+			$query = $this->db->query("select id from taxis where taxi_number=$taxinum");
+				foreach($query->result() as $row){
+				$test2['id'] = $row->id;	
 
-
-
-}
-
-
-?>
-=======
-class Taxis extends CI_Model{
+		}
+		return $test2['id'];
+		}
+		
 
 		public function get_score($taxi_id){
 		 
@@ -92,23 +95,22 @@ class Taxis extends CI_Model{
 
 		}
 		return $test['score'];
-		}
-		
-		public function found($taxinum){
-		
-	$test2 = array();
-				  
-			$query = $this->db->query("select id from taxis where taxi_number=$taxinum");
-				foreach($query->result() as $row){
-				$test2['id'] = $row->id;	
+		}		
 
-		}
-		return $test2['id'];
-		}
+
+
 }
 
 
-
-
 ?>
->>>>>>> 661a7681025985e18d872e26d9a00615efba894f
+
+
+
+		
+		
+
+
+
+
+
+
