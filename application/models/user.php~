@@ -1,18 +1,6 @@
 <?php
 	class User extends CI_Model
 	{
-		public function get_user_info($arr)
-		{
-			$query=$this->db->query("select email, notify_email, mobile from users where username='{$arr["username"]}'");
-			foreach($query->result as $row)
-			{
-				$user_info['username']=$arr['username'];
-				$user_info['email']=$row->email;
-				$user_info['notify_email']=$row->notify_email;
-				$user_info['mobile']=$row->mobile;
-			}
-			return $user_info;
-		}
 		public function forget_password_get_email($username)
 		{
 			$query=$this->db->query("SELECT email from users where username=\"$username\"");
@@ -75,20 +63,8 @@
 	
 		    $this->db->query("update users set password_sha2='$password',reset_code='' where username='$username'");		
 	         }
-		public function update_info_profile($name, $e, $n, $b, $m, $g) {
 
-        $data = array(
-            'email' => $e,
-            'notify_email' => $n,
-            'mobile' => $m,
-            'birth_date' => $b,
-        );
-
-        $this->db->where('username', $name);
-        $result = $this->db->update('users', $data);
-
-        return $result;
-    }
 
 	}
+
 ?>
