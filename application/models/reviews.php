@@ -18,8 +18,13 @@ class Reviews extends CI_Model{
 		}
 		
 		public function get_count($taxi_id){
-		$query = $this->db->query("select count(id) from reviews group by taxi_id having taxi_id=$taxi_id");
-		
+				$test2 = array();		  
+				$query = $this->db->query("select count(id) as allrev from reviews group by taxi_id having taxi_id=$taxi_id");
+				foreach($query->result() as $row){
+				$test2['count'] = $row->allrev;	
+
+		}
+		return $test2['count'];
 		
 		
 		}
