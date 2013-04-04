@@ -12,8 +12,10 @@ class Search extends CI_Controller {
 	public function index(){
 	$taxinum=$this->input->post('taxinum');
 		//$_SESSION['username']="test";
+		
         if(isset($_SESSION['username']))
         {
+			 $username = $_SESSION['username'];
             $taxi_id=$this->taxi_exist();
 		//	echo $taxi_id;
             if($taxi_id){
@@ -44,7 +46,6 @@ class Search extends CI_Controller {
     public function taxi_exist() {
         $taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum);
-		//echo $taxi_id; 
        return $taxi_id;
     }
 
@@ -84,7 +85,9 @@ class Search extends CI_Controller {
 	 }
 	else //there is session
 	{
-     
+		
+     $_SESSION['taxi_id'] = $taxi_id;
+     $_SESSION['username'] = $username;
      $this->rate_taxi($data);
      //redirect to logged search results 
 	} 
