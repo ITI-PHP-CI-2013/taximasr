@@ -11,14 +11,11 @@ class Search extends CI_Controller {
     }
 	public function index(){
 	$taxinum=$this->input->post('taxinum');
-<<<<<<< HEAD
 		//$_SESSION['username']="test";
-		
-=======
+
 	$taxinum=str_replace(' ','',$taxinum);
 	
-	//	$_SESSION['username']="test";
->>>>>>> 0a8a69096a37b59ecd190fc3c39186f63e1e6b86
+	
         if(isset($_SESSION['username']))
         {
 			 $username = $_SESSION['username'];

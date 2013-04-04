@@ -1,11 +1,4 @@
 <?php
-
-	
-		
-	}
-		?>
-		
-<?php
 class Users extends CI_Controller
 {
 public $usere;
@@ -255,4 +248,5 @@ public function go_edit() {
 			
 			}
 		}
+
 ?>
