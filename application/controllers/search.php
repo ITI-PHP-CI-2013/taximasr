@@ -13,7 +13,7 @@ class Search extends CI_Controller {
 	$taxinum=$this->input->post('taxinum');
 	$taxinum=str_replace(' ','',$taxinum);
 	
-	//	$_SESSION['username']="test";
+		$_SESSION['username']="test";
         if(isset($_SESSION['username']))
         {
             $taxi_id=$this->taxi_exist();
