@@ -7,11 +7,21 @@ class Users extends CI_Controller
 		parent::__construct();
 		$this->load->model('user');
 		$this->load->library('email');
+
+		$this->load->helper('url');	
+
 		$this->load->model('Login');
 		$this->load->model('signupmodel');
 		$this->load->library('javascript');
+
 	}
-	
+	public function show_user_profile()
+	{
+		$data['user_info']=$this->user->get_user_info($this->input->session("username"));
+		$this->load->view("template-top");
+		$this->load->view("user_profile", $data);
+		$this->load->view("template-buttom");
+	}
 		public function signup(){
                 
                         $this->load->view('template-top');
@@ -88,6 +98,37 @@ class Users extends CI_Controller
 
 	}
 
+
+    public function reset_password($reset_code){
+		
+		if($this->input->post('newPassword')){
+			
+			$newPassword=$this->input->post('newPassword');
+			$confimPassword=$this->input->post('confirmPassword');
+			$username = $this->input->session('username');
+			
+		    if( $newPassword == $confimPassword ){	
+					$this-user->change_new_password($newPassword,$username);
+					$this->load->view('home');
+			}
+		
+		}else{
+				
+		     $flag=$this->user->getReset_code($reset_code);
+			
+			 if($flag == 1){
+				
+					$this->load->view('change_password');
+			 }else{
+			 
+					$this->load->view('valid_link');
+			 }
+		
+		
+		}
+		
+    }
+
  public function login()
 	{
 	$this->load->view('template-top');	
@@ -114,5 +155,36 @@ foreach($info as $key){
     }
 }
 	} 
+public function go_edit() {
+
+        $this->load->view('template-top');
+        $this->load->view('edit_profile');
+        $this->load->view('template-bottom');
+    }
+
+    public function edit_profile() {
+
+        if (isset($this->input->post("save"))) {
+
+            $name = $this->input->session("username");
+            $email = $this->input->post("email");
+            $notify = $this->input->post("notift");
+            $birth = $this->input->post("birth");
+            $mobile = $this->input->post("mobile");
+            $gender = $this->input->post("gender");
+
+
+            $this->user->update_info_profile($name, $email, $notify, $birth, $mobile, $gender);
+
+            $z = 1;
+            $this->load->view('user_profile', $z);
+        } else {
+            $z = 0;
+
+            $this->load->view('user_profile', $z);
+        }
+    }
+
+
 }
 ?>
