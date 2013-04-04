@@ -1,7 +1,8 @@
+
 <?php
 class Users extends CI_Controller
 {
-
+public $usere;
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,7 +14,7 @@ class Users extends CI_Controller
 		$this->load->model('Login');
 		$this->load->model('signupmodel');
 		$this->load->library('javascript');
-
+		//$this->load->helper('email');
 	}
 	public function show_user_profile()
 	{
@@ -185,6 +186,40 @@ public function go_edit() {
         }
     }
 
+	public function notify() {
+        $this->usere=$this->session->userdata('username');
+        $nEmail = $this->taxidb->notifyEmail($this->usere);
+        if(valid_email($nEmail)) {
+            $data['nEmail']=$nEmail;
+			$this->load->view('template-top');
+            $this->load->view('messagepage', $data);
+			$this->load->view('template-bottom');
 
-}
+        }else
+        {
+			$this->load->view('template-top');
+            $this->load->view('messagewarningpage');
+			$this->load->view('template-bottom');
+        }
+    }
+    public function send() {
+        $useremail = $this->taxidb->userEmail($this->usere);
+        $nEmail = $this->taxidb->notifyEmail($this->usere);
+        if (valid_email($nEmail))
+		{
+			//$status=send_email($nEmail, "notification", $this->input->post('message'),"From: $useremail");
+			//if($status)
+			//{
+				$this->load->view('template-top');
+				$this->load->view('messageconfirmpage');
+				$this->load->view('template-bottom');
+			//}
+		}        
+        else
+        {
+			$this->load->view('template-top');
+            $this->load->view('messagewarningpage');
+			$this->load->view('template-bottom');
+        }
+    }
 ?>
