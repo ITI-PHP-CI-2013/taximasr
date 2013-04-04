@@ -9,7 +9,7 @@
                     $('#name').focusout(function()
                     {	
                        $.ajax({
-                        url: "<?php echo base_url('index.php/users/check_user'); ?>",
+                        url: "<?php echo base_url('users/check_user'); ?>",
                         type: "GET",
                         data: 
                         {
