@@ -1,30 +1,5 @@
 <?php
-<<<<<<< HEAD
-class Home extends CI_Controller
-{
-	public function index()
-	{
-		$this->load->view('template-top',
-							array ('username'=>'')
-						  );
-						  
-		$this->load->view('home-page');
-		
-		$this->load->view('template-bottom');
-	}
-	
-	public function help()
-	{
-		$this->load->view('template-top',
-							array ('username'=>'')
-						  );
-						  
-		$this->load->view('help-page');
-		
-		$this->load->view('template-bottom');
-	}
-}
-=======
+
 class Home extends CI_Controller {
 
 public function welcome()
@@ -37,6 +12,4 @@ public function welcome()
 	
 
 }
-
->>>>>>> welcome message
 ?>
