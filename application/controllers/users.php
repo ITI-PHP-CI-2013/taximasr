@@ -15,7 +15,13 @@ class Users extends CI_Controller
 		$this->load->library('javascript');
 
 	}
-	
+	public function show_user_profile()
+	{
+		$data['user_info']=$this->user->get_user_info($this->input->session("username"));
+		$this->load->view("template-top");
+		$this->load->view("user_profile", $data);
+		$this->load->view("template-buttom");
+	}
 		public function signup(){
                 
                         $this->load->view('template-top');
