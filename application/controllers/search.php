@@ -81,6 +81,12 @@ $data['count']=$this->reviews->get_count($taxi_id);;
 	}
 	
 	}
+	
+	public function not_found() {
+        $this->load->view("template-top");
+        $this->load->view("not_found");
+        $this->load->view("template-bottom");
+    }
    public function taxi($id=0)
    {
 	
