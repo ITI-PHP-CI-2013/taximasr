@@ -15,7 +15,7 @@ class Search extends CI_Controller {
 
 	$taxinum=str_replace(' ','',$taxinum);
 	
-	//	$_SESSION['username']="test";
+	
         if(isset($_SESSION['username']))
         {
 			 $username = $_SESSION['username'];
