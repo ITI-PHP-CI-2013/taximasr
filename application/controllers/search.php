@@ -11,11 +11,17 @@ class Search extends CI_Controller {
     }
 	public function index(){
 	$taxinum=$this->input->post('taxinum');
+<<<<<<< HEAD
+		//$_SESSION['username']="test";
+		
+=======
 	$taxinum=str_replace(' ','',$taxinum);
 	
 	//	$_SESSION['username']="test";
+>>>>>>> 0a8a69096a37b59ecd190fc3c39186f63e1e6b86
         if(isset($_SESSION['username']))
         {
+			 $username = $_SESSION['username'];
             $taxi_id=$this->taxi_exist();
 		//	echo $taxi_id;
             if($taxi_id){
@@ -50,7 +56,6 @@ class Search extends CI_Controller {
         $taxinum=$this->input->post('taxinum');
 		$taxinum=str_replace(' ','',$taxinum);
         $taxi_id = $this->taxis->found($taxinum);
-		//echo $taxi_id; 
        return $taxi_id;
     }
 
@@ -86,11 +91,15 @@ class Search extends CI_Controller {
 		else
 		{
 		  //not_found($data);
+		      $_SESSION['taxi_id'] = $taxi_id;
+     $_SESSION['username'] = $username;
 		}
 	 }
 	else //there is session
 	{
-     
+		
+     $_SESSION['taxi_id'] = $taxi_id;
+     $_SESSION['username'] = $username;
      $this->rate_taxi($data);
      //redirect to logged search results 
 	} 
