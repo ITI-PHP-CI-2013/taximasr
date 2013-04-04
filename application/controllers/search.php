@@ -4,15 +4,14 @@ class Search extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-<<<<<<< HEAD
+
         $this->load->model(array('taxis'));
         $this->load->helper('url');
         $this->load->library('session');
         
         
-=======
         $this->load->model(array('taxis','reviews'));
->>>>>>> 661a7681025985e18d872e26d9a00615efba894f
+
     }
 	public function index(){
 	$taxinum=$this->input->post('taxinum');
@@ -30,8 +29,7 @@ class Search extends CI_Controller {
 	}
 
     public function rate_taxi($taxi_id) {
-<<<<<<< HEAD
-=======
+
 $taxinum=$this->input->post('taxinum');
         $data['taxiscore'] = $this->taxis->get_score($taxi_id); //MVC model
         $data['taxireview'] = $this->reviews->get_reviews($taxi_id); //an associative array contains all 6 items
@@ -45,30 +43,29 @@ $data['count']=$this->reviews->get_count($taxi_id);;
             $keyword['searchKey'] = $key;
             $this->load->view("noMatch",$keyword);
         }
->>>>>>> 661a7681025985e18d872e26d9a00615efba894f
+
 
         $data['taxiscore'] = $this->taxis->get_score();  //MVC model
 		$data['taxireview'] = $this->reviews->get_reviews(); //an associative array contains all 6 items
         $this->load->view('search_logged', $data); //associative array with two values ,first is assoc and the other is score 
     }
 
-<<<<<<< HEAD
+
 	
 	public function taxi_exist() {
 		$taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum); 
 
-=======
+
     public function taxi_exist() {
         $taxinum=$this->input->post('taxinum');
         $taxi_id = $this->taxis->found($taxinum);
 		//echo $taxi_id; 
->>>>>>> 661a7681025985e18d872e26d9a00615efba894f
+
        return $taxi_id;
 
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	
 	isset($_SESSION['username']){
 	$taxi_id=taxi_exist();
@@ -115,15 +112,12 @@ $data['count']=$this->reviews->get_count($taxi_id);;
      //redirect to logged search results 
 	} 
    
- 	
 }
-}
-?>
-=======
-<<<<<<< HEAD
-=======
 
->>>>>>> 0e20e5638c306796332f93528723db05a8f3bc3d
+
+
+
+
 
 
 
@@ -144,9 +138,3 @@ public function index(){
 	
 
 ?>
-<<<<<<< HEAD
->>>>>>> some errors fixed
->>>>>>> 661a7681025985e18d872e26d9a00615efba894f
-=======
-
->>>>>>> 0e20e5638c306796332f93528723db05a8f3bc3d
