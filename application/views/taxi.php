@@ -20,8 +20,8 @@ var_dump($taxis);
 	<?php echo $reviews['radio_volume']; ?><h3>صوت الراديو</h3>
 	<?php echo $reviews['driving_style']; ?><h3>سرعة القيادة</h3>
 	</div>
-
-
+<button formaction=<?php echo base_url('users/login');?> >sign in</button>
+<button formaction=<?php echo base_url('users/signup');?> >sign up </button>
 </body>
 
 </html>
