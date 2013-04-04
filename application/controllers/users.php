@@ -176,12 +176,12 @@ public function go_edit() {
 
             $this->user->update_info_profile($name, $email, $notify, $birth, $mobile, $gender);
 
-            $z = 1;
-            $this->load->view('user_profile', $z);
+            $data['z'] = 1;
+            $this->load->view('user_profile', $data);
         } else {
-            $z = 0;
+            $data['z'] = 0;
 
-            $this->load->view('user_profile', $z);
+            $this->load->view('user_profile', $data);
         }
     }
 
