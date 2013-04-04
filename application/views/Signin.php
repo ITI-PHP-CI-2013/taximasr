@@ -6,7 +6,7 @@ header("Content-Type: text/html; charset=utf-8");
  */
 
 if(isset($errormsg)){
-    echo $errormsg;
+    echo $errormsg + '!!';
 }
 ?>
 <html >
