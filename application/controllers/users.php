@@ -1,45 +1,59 @@
-<?php 
+<?php
+class Users extends CI_Controller
+{
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('user');
+		$this->load->library('email');
 
-class Users extends CI_Controller{
-	public function __construct(){
-            parent::__construct();
-            $this->load->model('signupmodel');
-            $this->load->model('user');
-            $this->load->library('email');
-            $this->load->library('javascript');
+		$this->load->helper('url');	
+
+		$this->load->model('Login');
+		$this->load->model('signupmodel');
+		$this->load->library('javascript');
+
 	}
 	
-	public function signup(){       
-            $this->load->view('template-top');
-            $this->load->view('signupform');
-            $this->load->view('template-bottom');
-	}
+		public function signup(){
+                
+                        $this->load->view('template-top');
+			$this->load->view('signupform');
+                        $this->load->view('template-bottom');
+		}
                 
        	public function check_user(){
-            $check= $this->signupmodel->get_usernames($_GET['username']);
-            if ($check==1)
-                 echo "هذا الأسم مستخدم سابقا";
-            //$_GET['username']
-	}
+                        $check= $this->signupmodel->get_usernames($_GET['username']);
+                        if ($check==1)
+                             echo "هذا الأسم مستخدم سابقا";
+			//$_GET['username']
+		}
                 
         public function insert_user(){
+            
                 $pass=hash ('sha256',$_POST['password']);
+                
                 $this->signupmodel->insert_user($_POST['name'],$pass,$_POST['email'],time());
                 echo "Username registered successfully";
+   
         }
-
-        public function forget_password() {
-		if(isset($_POST['username'])||isset($_POST['email'])) {
+	function forget_password()
+	{
+		if(isset($_POST['username'])||isset($_POST['email']))
+		{
 			$exist;
 			$email;
-			if(isset($_POST['username'])&&$_POST['username']!="") {
+			if(isset($_POST['username'])&&$_POST['username']!="")
+			{
 				$username=$_POST['username'];
 				$email=$this->user->forget_password_get_email($username);
-			} else {
+			}
+			else
+			{
 				$email=$_POST['email'];
 			}
+
 			$exist=$this->user->forget_password_check_email($email);
 			if($exist==0)
 			{
@@ -67,7 +81,10 @@ class Users extends CI_Controller{
 				$this->load->view('template-bottom');
 
 			}
-		} else {
+		}
+		
+		else
+		{
 			$this->load->view('template-top');
 			$this->load->view('forget_password');
 			$this->load->view('template-bottom');
@@ -75,5 +92,63 @@ class Users extends CI_Controller{
 
 	}
 
-}
 
+    public function reset_password($reset_code){
+		
+		if($this->input->post('newPassword')){
+			
+			$newPassword=$this->input->post('newPassword');
+			$confimPassword=$this->input->post('confirmPassword');
+			$username = $this->input->session('username');
+			
+		    if( $newPassword == $confimPassword ){	
+					$this-user->change_new_password($newPassword,$username);
+					$this->load->view('home');
+			}
+		
+		}else{
+				
+		     $flag=$this->user->getReset_code($reset_code);
+			
+			 if($flag == 1){
+				
+					$this->load->view('change_password');
+			 }else{
+			 
+					$this->load->view('valid_link');
+			 }
+		
+		
+		}
+		
+    }
+
+ public function login()
+	{
+	$this->load->view('template-top');	
+     $this->load->view('Signin');
+     $this->load->view('template-bottom');
+	}
+ public function chklogin()
+	{
+$data = array('username' => $this->input->post('username'),'password'=>  hash('sha256',$this->input->post('password'))); 
+$info['data'] = $this->Login->checkUser($data);	
+//$this->load->view('welcome_message',$data);
+foreach($info as $key){
+    if(count($key)>0){
+      session_start();
+      $_SESSION['username']=$key['username'];
+      redirect(base_url('/home/welcome'),'location');   //9elmafrod yt3ml redirect 3la el welcome page
+     // $this->load->view('template-top',$_SESSION);
+    }
+    else{
+        $err['errormsg']="<br>محاوله دخول خاطئه";        
+        $this->load->view('template-top');	
+     $this->load->view('Signin',$err);
+     $this->load->view('template-bottom');
+    }
+}
+	} 
+
+}
+?>

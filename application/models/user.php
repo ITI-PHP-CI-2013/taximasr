@@ -25,6 +25,46 @@
 		{
 			$query=$this->db->query("UPDATE `users` set `reset_code`=\"$reset_code\" where `email`=\"$email\"  ");
 		}
+
+                public function getReset_code($reset_code){
+		
+		      $query = $this->db->query('select * from users where reset_code=$reset_code');
+   
+		      if($query->result()){
+		
+				$reset_code=$row->reset_code;
+				$reset_code_timeStamp = substr($reset_code,15);
+				$timeStamp = time();
+				
+				$check = $timeStamp - $reset_code_timeStamp;
+
+                                if($check < 60*60*24){
+				
+					$flag=1;
+				
+				}else{
+				
+					$flag=0;
+				
+				}		
+				
+		
+		
+		      }else{
+				$flag=0;	
+		      }
+		
+		
+		         return $flag;
+   
+                 }
+	
+	         public function change_new_password($password,$username){
+	
+		    $this->db->query("update users set password_sha2='$password',reset_code='' where username='$username'");		
+	         }
+
+
 	}
 
 ?>

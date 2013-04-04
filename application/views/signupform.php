@@ -1,9 +1,6 @@
+<div>
 
-<html>
-    <head>
-        	<script src="<?php echo base_url('jquery.min.js')?>">
-                </script>
-                <script  src="<?php echo base_url(); ?>js/jquery.min.js"></script>
+                <script  src="<?php echo base_url('js/jquery-min.js'); ?>"></script>
         <script>
            
            $(function() 
@@ -12,7 +9,7 @@
                     $('#name').focusout(function()
                     {	
                        $.ajax({
-                        url: "<?php echo base_url('index.php/users/check_user'); ?>",
+                        url: "<?php echo base_url('users/check_user'); ?>",
                         type: "GET",
                         data: 
                         {
@@ -22,8 +19,9 @@
                                             x=0;
                                           $("#error").css("display","inline");
                                         $('#error').html(resp);	
-                                     
-                                        if(resp.length==27)
+                                        alert(resp.length);
+                                        if(resp.length!=0)
+                                            
                                                x=1
                            
                     }
@@ -78,7 +76,7 @@
 
 	
 					$("#error").html("**ادخل البريد الصحبح**");
-                                        alert(x);
+                              
 					return false;
 				}			
 
@@ -90,13 +88,12 @@
 	
     
         </script>
-    </head>
-    <body>
+   
         <form method="post" action="<?php echo base_url('index.php/users/insert_user'); ?>">
              
-            <span id="error" class="error"></span><br>
-    
-             <label>اسم المستخدم: </label><br>
+            <div style="color:red" id="error" class="error"></div><br><br>
+            <br>
+            <br><label>اسم المستخدم: </label><br>
              
              <input type="text" id="name" name="name"><br>
              
@@ -116,7 +113,4 @@
        
              
         </form>
-    </body>
-</html>
-<?php
-?>
+</div>
