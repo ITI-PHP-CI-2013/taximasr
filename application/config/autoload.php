@@ -52,7 +52,8 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session');
+$autoload['libraries'] = array('database','session'); 
+//$autoload['libraries'] = array('email', 'session');  //all controllers can see these libraries
 
 
 /*

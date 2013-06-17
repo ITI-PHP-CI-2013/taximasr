@@ -45,14 +45,14 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'default';   
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'taximasr';
-$db['default']['password'] = 'taximasr';
-$db['default']['database'] = 'taximasr';
-$db['default']['dbdriver'] = 'mysqli';
+$db['default']['username'] = 'root';   //changed
+$db['default']['password'] = '1234';
+$db['default']['database'] = 'taxi';
+$db['default']['dbdriver'] = 'mysql';  //changed
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

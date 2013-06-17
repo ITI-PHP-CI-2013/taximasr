@@ -38,8 +38,10 @@
 |
 */
 
-$route['default_controller'] = "home/index";
+$route['default_controller'] = "home";
+//$route['default_controller'] = "hello";
 $route['404_override'] = '';
+//$route['products/(\d+)'] = 'categories/products/$1'; // if not written correct there will be a problem
 
 
 /* End of file routes.php */

@@ -1,39 +1,26 @@
 <?php
 
+class Home extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->helper('url');
+        $this->load->library(array('session', 'form_validation'));
+        $this->load->model(array('log'));
+        $this->load->database();
+    }
 
-class Home extends CI_Controller
-{
-	public function index()
-	{
-		$this->load->view('template-top',
-							array ('username'=>'')
-						  );
-						  
-		$this->load->view('home-page');
-		
-		$this->load->view('template-bottom');
-	}
-	
-	public function help()
-	{
-		$this->load->view('template-top',
-							array ('username'=>'')
-						  );
-						  
-		$this->load->view('help-page');
-		
-		$this->load->view('template-bottom');
-	}
+    public function index() {
+        $user_id = $this->session->userdata('id');
+        if ($user_id) {
+            $data['page'] = "welcome";
+            $this->load->view('template', $data);
+        } else {
+            $data['page'] = "welcome_nonlogged";
+            $this->load->view('template', $data);
+        }
+    }
 
-
-	public function welcome()
-	{
-		$this->load->view('template-top',array('username' => $this->input->session('username')));
-		$this->load->view('welcomepage');
-		$this->load->view('template-bottom');
-	}
 }
-
 ?>
 
